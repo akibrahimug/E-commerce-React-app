@@ -50,8 +50,8 @@ function Signup() {
   return (
     <div className="sign-up-container">
       <h2>Dont have an accout?</h2>
+      <h4>Sign up with your email and password</h4>
       <form onSubmit={handleSubmit}>
-        <label>Display Name</label>
         <FormInput
           label="Display Name"
           required
@@ -60,7 +60,6 @@ function Signup() {
           name="displayName"
           value={displayName}
         />
-        <label>Email</label>
         <FormInput
           label="Email"
           required
@@ -69,7 +68,6 @@ function Signup() {
           name="email"
           value={email}
         />
-        <label>Password</label>
         <FormInput
           label="Password"
           required
@@ -78,7 +76,6 @@ function Signup() {
           name="password"
           value={password}
         />
-        <label>Confirm Password</label>
         <FormInput
           label="Confirm Password"
           required
