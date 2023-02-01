@@ -1,11 +1,15 @@
 import { Link, Outlet } from "react-router-dom";
 import React, { Fragment, useContext } from "react";
-import { ReactComponent as Ecommercelogo } from "../../../assests/crown.svg";
+import { ReactComponent as Ecommercelogo } from "../../assests/crown.svg";
 import "./navigation.styles.scss";
-import { UserContext } from "../../context/user.context";
-import { signOutUser } from "../../../utils/firebase/firebase.utils";
+import { UserContext } from "../../components/context/user.context";
+import { signOutUser } from "../../utils/firebase/firebase.utils";
+import CartIcon from "../../components/cart-icon/cart-icon.component";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+import { CartDropdownContext } from "../../components/context/cart-dropdown.context";
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
+  const { toggleCart } = useContext(CartDropdownContext);
 
   return (
     <Fragment>
@@ -27,7 +31,9 @@ const Navigation = () => {
               SIGNIN
             </Link>
           )}
+          <CartIcon />
         </div>
+        {toggleCart && <CartDropdown />}
       </div>
       <Outlet />
     </Fragment>

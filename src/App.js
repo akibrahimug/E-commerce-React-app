@@ -1,9 +1,9 @@
 import "./styles/categories.styles.scss";
-import Home from "./components/routes/home/home.components";
+import Home from "./routes/home/home.components";
 import { Routes, Route } from "react-router-dom";
-import Navigation from "./components/routes/navigation/navigation.components";
-import Authentication from "./components/routes/authenticate/auth.component";
-
+import Navigation from "./routes/navigation/navigation.components";
+import Authentication from "./routes/authenticate/auth.component";
+import Shop from "./routes/shop/shop.component";
 const App = () => {
   return (
     <Routes>
@@ -12,6 +12,7 @@ const App = () => {
         {/* index tells the route to match the route / and render the component as well */}
         <Route index element={<Home />} />
         <Route path="signin" element={<Authentication />} />
+        <Route path="shop" element={<Shop />} />
       </Route>
     </Routes>
   );
