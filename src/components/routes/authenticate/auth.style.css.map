@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,eAAe,CAAC;EACd,OAAO,EAAE,IAAI;EACb,KAAK,EAAE,KAAK;EACZ,eAAe,EAAE,aAAa;EAC9B,MAAM,EAAE,SAAS;CAClB",
-    "sources": [
-        "auth.style.scss"
-    ],
-    "names": [],
-    "file": "auth.style.css"
-}
+{"version":3,"sources":["auth.style.scss","auth.style.css"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,YAAA;EACA,8BAAA;EACA,iBAAA;ACCF","file":"auth.style.css"}

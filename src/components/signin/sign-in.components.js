@@ -6,11 +6,9 @@ import { getRedirectResult } from "firebase/auth";
 import {
   auth,
   // signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInWithGoogleRedirect,
   signInUserWithEmailAndPasswords,
 } from "../../utils/firebase/firebase.utils";
-
 const defaultFormFields = {
   email: "",
   password: "",
@@ -25,12 +23,15 @@ function SignIn() {
     setFormFields({ ...formFields, [name]: value });
   };
 
+  const resetFormFields = () => {
+    setFormFields(defaultFormFields);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = formFields;
     try {
-      const res = await signInUserWithEmailAndPasswords(email, password);
-      console.log(res);
+      await signInUserWithEmailAndPasswords(email, password);
+      resetFormFields();
     } catch (err) {
       switch (err.code) {
         // if err.code === "auth/user-not-found"
@@ -52,10 +53,7 @@ function SignIn() {
 
   useEffect(() => {
     async function getRedirect() {
-      const res = await getRedirectResult(auth);
-      if (res) {
-        await createUserDocumentFromAuth(res.user);
-      }
+      await getRedirectResult(auth);
     }
     getRedirect();
   }, []);

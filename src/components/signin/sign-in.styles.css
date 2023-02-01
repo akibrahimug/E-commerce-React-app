@@ -1,32 +1,18 @@
 .sign-in-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   width: 380px;
 }
-
 .sign-in-container h2 {
   margin: 8px 0;
 }
-
 .sign-in-container .buttons-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
-
 .sign-in-container span {
   text-align: center;
   margin: 20px;
   font-size: 20px;
   font-weight: 600;
-}
-/*# sourceMappingURL=sign-in.styles.css.map */
+}/*# sourceMappingURL=sign-in.styles.css.map */

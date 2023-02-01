@@ -6,6 +6,10 @@ import {
   //   signInWithPopup,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  // observable listener, able to help us hook in to streams of events
+  // like signin signout ...
+  onAuthStateChanged,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 // Your web app's Firebase configuration
@@ -75,3 +79,11 @@ export const signInUserWithEmailAndPasswords = async (email, password) => {
   if (!email || !password) return;
   return await signInWithEmailAndPassword(auth, email, password);
 };
+
+export const signOutUser = async () => await signOut(auth);
+
+// invoke/ call this whenever a user signs in or out
+export const onAuthStateChangedListener = (callback) =>
+  // this is an open listener waiting for any changes
+  // we need to find a way to stop it
+  onAuthStateChanged(auth, callback);

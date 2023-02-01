@@ -3,6 +3,7 @@ import Home from "./components/routes/home/home.components";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/routes/navigation/navigation.components";
 import Authentication from "./components/routes/authenticate/auth.component";
+
 const App = () => {
   return (
     <Routes>
