@@ -1,28 +1,38 @@
 import React, { useContext } from "react";
+import "./checkout.styles.scss";
 import { CartDropdownContext } from "../../components/context/cart-dropdown.context";
+import CheckoutItem from "../../components/checoutItem/checkoutItem.component";
 function Checkout() {
-  const { cartItems } = useContext(CartDropdownContext);
-  const removeItem = (e) => {
-    cartItems.find((cartItem) =>
-      cartItem.id === parseInt(e.target.id) ? console.log(cartItem) : ""
-    );
-  };
+  const { cartItems, checkoutTotalCost } = useContext(CartDropdownContext);
+
   return (
-    <div>
-      {cartItems?.map((item) => (
-        <div key={item.id}>
-          <h1>{item.name}</h1>
-          <span>{item.price}</span>
-          <div>
-            <span>+</span>
-            <p>{item.quantity}</p>
-            <span>-</span>
-          </div>
-          <button onClick={removeItem} id={item.id}>
-            X
-          </button>
+    <div className="checkout-container">
+      <div className="checkout-header">
+        <div className="header-blocks">
+          <span>Product</span>
         </div>
+        <div className="header-blocks">
+          {" "}
+          <span>Description</span>
+        </div>
+        <div className="header-blocks">
+          {" "}
+          <span>Quantity</span>
+        </div>
+        <div className="header-blocks">
+          {" "}
+          <span>Price</span>
+        </div>
+        <div className="header-blocks">
+          {" "}
+          <span>Remove</span>
+        </div>
+      </div>
+      {cartItems?.map((item) => (
+        <CheckoutItem key={item.id} cartItem={item} />
       ))}
+
+      <span className="total">Total: £{checkoutTotalCost}</span>
     </div>
   );
 }
