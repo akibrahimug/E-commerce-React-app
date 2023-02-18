@@ -1,6 +1,10 @@
-import "./cart-icon.styles.scss";
+import {
+  ShoppingIconStyles,
+  CartIconContainer,
+  ItemCount,
+} from "./cart-icon.styles";
 import { useContext } from "react";
-import { ReactComponent as ShoppingIcon } from "../../assests/shopping-bag.svg";
+
 import { CartDropdownContext } from "../context/cart-dropdown.context";
 function CartIcon() {
   const { setToggleCart, toggleCart, cartCount } =
@@ -8,10 +12,10 @@ function CartIcon() {
   // show and hide cart-dropdown
   const handleClick = () => setToggleCart(!toggleCart);
   return (
-    <div className="cart-icon-container" onClick={handleClick}>
-      <ShoppingIcon className="shopping-icon" />
-      <span className="item-count">{cartCount}</span>
-    </div>
+    <CartIconContainer onClick={handleClick}>
+      <ShoppingIconStyles className="shopping-icon" />
+      <ItemCount>{cartCount}</ItemCount>
+    </CartIconContainer>
   );
 }
 

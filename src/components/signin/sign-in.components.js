@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import FormInput from "../formInput/formin.component";
-import Button from "../button/button.component";
-import "./sign-in.styles.scss";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import {
+  SignInContainer,
+  Option,
+  Heading,
+  ButtonConatainer,
+} from "./sign-in.styles";
 import { getRedirectResult } from "firebase/auth";
 import {
   auth,
@@ -65,8 +70,8 @@ function SignIn() {
   // };
 
   return (
-    <div className="sign-in-container">
-      <h2>Do you already have an account</h2>
+    <SignInContainer>
+      <Heading>Do you already have an account</Heading>
       <h4>SignIn with your email and password</h4>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -85,21 +90,21 @@ function SignIn() {
           name="password"
           value={password}
         />
-        <div className="buttons-container">
+        <ButtonConatainer>
           <Button type="submit">Sign In</Button>
-          <span>OR</span>
+          <Option>OR</Option>
           {/* <button onClick={logGoogleUser}> Sign In with Google</button> */}
           <Button
-            buttonType="google"
+            buttonType={BUTTON_TYPE_CLASSES.google}
             type="button"
             onClick={signInWithGoogleRedirect}
           >
             {" "}
             SignIn with Google
           </Button>
-        </div>
+        </ButtonConatainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 }
 

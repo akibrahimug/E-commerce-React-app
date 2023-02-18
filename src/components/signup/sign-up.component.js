@@ -4,7 +4,7 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../formInput/formin.component";
-import "./sign-up.styles.scss";
+import { Heading, SignUpContainer } from "./sign-up.styles";
 import Button from "../button/button.component";
 const defaultFormFields = {
   displayName: "",
@@ -48,8 +48,8 @@ function Signup() {
   };
 
   return (
-    <div className="sign-up-container">
-      <h2>Dont have an accout?</h2>
+    <SignUpContainer>
+      <Heading>Dont have an accout?</Heading>
       <h4>Sign up with your email and password</h4>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -86,7 +86,7 @@ function Signup() {
         />
         <Button type="submit">Sign Up</Button>
       </form>
-    </div>
+    </SignUpContainer>
   );
 }
 

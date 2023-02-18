@@ -1,4 +1,4 @@
-import "./checkoutItem.styles.scss";
+import { CheckoutItemContainer } from "./checkoutItem.styles";
 import React, { useContext } from "react";
 import { CartDropdownContext } from "../context/cart-dropdown.context";
 function CheckoutItem({ cartItem }) {
@@ -16,7 +16,7 @@ function CheckoutItem({ cartItem }) {
   const handleClearCartItem = () => removeWithoutDecrement(cartItem);
 
   return (
-    <div className="checkout-item-container">
+    <CheckoutItemContainer>
       <div className="image-container">
         <img src={imageUrl} alt="" />
       </div>
@@ -24,11 +24,11 @@ function CheckoutItem({ cartItem }) {
 
       <span className="quantity">
         {" "}
-        <span onClick={handleAddtoCart} className="increase">
+        <span className="increase" onClick={handleAddtoCart}>
           &#10094;
         </span>
         {quantity}
-        <span onClick={handleRemoveFromCart} className="decrease">
+        <span className="decrease" onClick={handleRemoveFromCart}>
           &#10095;
         </span>
       </span>
@@ -37,7 +37,7 @@ function CheckoutItem({ cartItem }) {
       <div className="remove-button" onClick={handleClearCartItem}>
         &#10005;
       </div>
-    </div>
+    </CheckoutItemContainer>
   );
 }
 

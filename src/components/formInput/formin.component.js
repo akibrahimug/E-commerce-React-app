@@ -1,8 +1,8 @@
 import React from "react";
-import "./form.styles.scss";
+import { Group } from "./form.styles";
 function FormInput({ label, ...otherProps }) {
   return (
-    <div className="group">
+    <Group>
       <input {...otherProps} className="form-input" />
       {label && (
         <label
@@ -13,7 +13,7 @@ function FormInput({ label, ...otherProps }) {
           {label}
         </label>
       )}
-    </div>
+    </Group>
   );
 }
 
