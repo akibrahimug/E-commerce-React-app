@@ -11,7 +11,6 @@ function Category() {
   useEffect(() => {
     setProducts(categoriesMap[category]);
   }, [categoriesMap, category]);
-  console.log(products);
   return (
     <>
       <Title>{category.toLocaleUpperCase()}</Title>
