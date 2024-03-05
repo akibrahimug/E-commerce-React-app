@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import { createAction } from "../../utils/reducer/reducer.utils";
 // helper function to find in the cartItem array, if they the id of the "productToAdd" increment
 // the quantity, if not add the item to the array
 const addCartItem = (cartItems, productToAdd) => {
@@ -106,14 +107,13 @@ export const CartDropdownProvider = ({ children }) => {
     const newCartCount = cartItems.reduce((a, b) => a + b.quantity, 0);
     const newTotalCount = cartItems.reduce((a, b) => a + b.price, 0);
 
-    dispatch({
-      type: "SET_CART_ITEMS",
-      payload: {
+    dispatch(
+      createAction(CART_ACTION_TYPES.SET_CART_ITEMS, {
         cartCount: newCartCount,
         checkoutTotalCost: newTotalCount,
         cartItems: cartItems,
-      },
-    });
+      })
+    );
   };
 
   const addItemToCart = (productToAdd) => {
@@ -133,7 +133,7 @@ export const CartDropdownProvider = ({ children }) => {
 
   // handle toggle
   const setToggleCart = (boolean) => {
-    dispatch({ type: "SET_IS_CART_OPEN", payload: boolean });
+    dispatch(createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, boolean));
   };
 
   const value = {
