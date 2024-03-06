@@ -1,6 +1,6 @@
 import { createAction } from "../../utils/reducer/reducer.utils";
 import CATEGORIES_ACTION_TYPES from "./category.types";
-import { getCategoriesAndDocument } from "../../utils/firebase/firebase.utils";
+// import { getCategoriesAndDocument } from "../../utils/firebase/firebase.utils";
 
 // export const setCategories = (categoriesArray) =>
 //   createAction(CATEGORIES_ACTION_TYPES.SET_CATEGORIES, categoriesArray);
@@ -17,12 +17,13 @@ export const fetchCategoriesSuccess = (categoriesArray) =>
 export const fetchCategoriesFailed = (error) =>
   createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error);
 
-export const fetchCategoriesAsync = () => async (dispatch) => {
-  dispatch(fetchCategoriesStart());
-  try {
-    const categoriesArray = await getCategoriesAndDocument("categories");
-    dispatch(fetchCategoriesSuccess(categoriesArray));
-  } catch (error) {
-    dispatch(fetchCategoriesFailed);
-  }
-};
+// this is for the thunk ===> migrated to saga
+// export const fetchCategoriesAsync = () => async (dispatch) => {
+//   dispatch(fetchCategoriesStart());
+//   try {
+//     const categoriesArray = await getCategoriesAndDocument("categories");
+//     dispatch(fetchCategoriesSuccess(categoriesArray));
+//   } catch (error) {
+//     dispatch(fetchCategoriesFailed);
+//   }
+// };
