@@ -4,11 +4,16 @@ import { useParams } from "react-router-dom";
 // import { CategoriesContext } from "../../components/context/categories.context";
 import ProductCart from "../../components/productCart/productCart.components";
 import { useSelector } from "react-redux";
-import { selectCategoriesMap } from "../../store/categories/category.selector";
+import {
+  selectCategoriesMap,
+  selectCategoriesIsLoading,
+} from "../../store/categories/category.selector";
+import Spinner from "../../components/spinner/spinner";
 function Category() {
   const { category } = useParams();
   // const { categoriesMap } = useContext(CategoriesContext);
   const categoriesMap = useSelector(selectCategoriesMap);
+  const isLoading = useSelector(selectCategoriesIsLoading);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -17,12 +22,16 @@ function Category() {
   return (
     <>
       <Title>{category.toLocaleUpperCase()}</Title>
-      <CategoryContainer>
-        {products &&
-          products.map((product) => (
-            <ProductCart key={product.id} product={product} />
-          ))}
-      </CategoryContainer>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <CategoryContainer>
+          {products &&
+            products.map((product) => (
+              <ProductCart key={product.id} product={product} />
+            ))}
+        </CategoryContainer>
+      )}
     </>
   );
 }
