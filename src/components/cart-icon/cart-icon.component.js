@@ -6,9 +6,8 @@ import {
 // import { useContext } from "react";
 
 // import { CartDropdownContext } from "../context/cart-dropdown.context";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setIsCartOpen } from "../../store/cart/cart.action";
-import { useSelector } from "react-redux";
 import {
   selectIsCartOpen,
   selectCartCount,

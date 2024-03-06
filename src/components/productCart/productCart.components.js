@@ -9,9 +9,8 @@ import {
 import { BUTTON_TYPE_CLASSES } from "../button/button.component";
 // import { useContext } from "react";
 // import { CartDropdownContext } from "../context/cart-dropdown.context";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from "../../store/cart/cart.action";
-import { useSelector } from "react-redux";
 import { selectCartItems } from "../../store/cart/cart.selector";
 function ProductCart({ product }) {
   const dispatch = useDispatch();
