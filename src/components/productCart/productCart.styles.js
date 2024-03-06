@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Button from "../button/button.component";
+import styled from 'styled-components'
+import Button from '../button/button.component'
 
 export const BaseButton = styled(Button)`
   width: 80%;
@@ -7,7 +7,7 @@ export const BaseButton = styled(Button)`
   position: absolute;
   top: 255px;
   display: none;
-`;
+`
 
 export const ProductCartContainer = styled.div`
   width: 100%;
@@ -21,7 +21,7 @@ export const ProductCartContainer = styled.div`
     opacity: 0.85;
     display: flex;
   }
-`;
+`
 
 export const Image = styled.img`
   width: 100%;
@@ -32,7 +32,7 @@ export const Image = styled.img`
   &:hover {
     opacity: 0.8;
   }
-`;
+`
 
 export const Footer = styled.div`
   width: 100%;
@@ -40,13 +40,13 @@ export const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 18px;
-`;
+`
 
 export const Name = styled.span`
   width: 90%;
   margin-bottom: 15px;
-`;
+`
 
 export const Price = styled.span`
   width: 10%;
-`;
+`

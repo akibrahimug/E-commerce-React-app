@@ -1,21 +1,13 @@
 // import React, { useContext } from "react";
-import {
-  CheckoutContainer,
-  Header,
-  HeaderBlocks,
-  Total,
-} from "./checkout.styles";
+import { CheckoutContainer, Header, HeaderBlocks, Total } from './checkout.styles'
 // import { CartDropdownContext } from "../../components/context/cart-dropdown.context";
-import CheckoutItem from "../../components/checkoutItem/checkoutItem.component";
-import { useSelector } from "react-redux";
-import {
-  selectCartItems,
-  selectCartTotal,
-} from "../../store/cart/cart.selector";
+import CheckoutItem from '../../components/checkoutItem/checkoutItem.component'
+import { useSelector } from 'react-redux'
+import { selectCartItems, selectCartTotal } from '../../store/cart/cart.selector'
 function Checkout() {
   // const { cartItems, checkoutTotalCost } = useContext(CartDropdownContext);
-  const cartItems = useSelector(selectCartItems);
-  const checkoutTotalCost = useSelector(selectCartTotal);
+  const cartItems = useSelector(selectCartItems)
+  const checkoutTotalCost = useSelector(selectCartTotal)
   return (
     <CheckoutContainer>
       <Header>
@@ -23,19 +15,19 @@ function Checkout() {
           <span>Product</span>
         </HeaderBlocks>
         <HeaderBlocks>
-          {" "}
+          {' '}
           <span>Description</span>
         </HeaderBlocks>
         <HeaderBlocks>
-          {" "}
+          {' '}
           <span>Quantity</span>
         </HeaderBlocks>
         <HeaderBlocks>
-          {" "}
+          {' '}
           <span>Price</span>
         </HeaderBlocks>
         <HeaderBlocks>
-          {" "}
+          {' '}
           <span>Remove</span>
         </HeaderBlocks>
       </Header>
@@ -45,7 +37,7 @@ function Checkout() {
 
       <Total>Total: £{checkoutTotalCost}</Total>
     </CheckoutContainer>
-  );
+  )
 }
 
-export default Checkout;
+export default Checkout

@@ -1,24 +1,24 @@
-import { CategoryContainer, Title } from "./category.styles";
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { CategoryContainer, Title } from './category.styles'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 // import { CategoriesContext } from "../../components/context/categories.context";
-import ProductCart from "../../components/productCart/productCart.components";
-import { useSelector } from "react-redux";
+import ProductCart from '../../components/productCart/productCart.components'
+import { useSelector } from 'react-redux'
 import {
   selectCategoriesMap,
   selectCategoriesIsLoading,
-} from "../../store/categories/category.selector";
-import Spinner from "../../components/spinner/spinner";
+} from '../../store/categories/category.selector'
+import Spinner from '../../components/spinner/spinner'
 function Category() {
-  const { category } = useParams();
+  const { category } = useParams()
   // const { categoriesMap } = useContext(CategoriesContext);
-  const categoriesMap = useSelector(selectCategoriesMap);
-  const isLoading = useSelector(selectCategoriesIsLoading);
-  const [products, setProducts] = useState([]);
+  const categoriesMap = useSelector(selectCategoriesMap)
+  const isLoading = useSelector(selectCategoriesIsLoading)
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
-    setProducts(categoriesMap[category]);
-  }, [categoriesMap, category]);
+    setProducts(categoriesMap[category])
+  }, [categoriesMap, category])
   return (
     <>
       <Title>{category.toLocaleUpperCase()}</Title>
@@ -27,13 +27,11 @@ function Category() {
       ) : (
         <CategoryContainer>
           {products &&
-            products.map((product) => (
-              <ProductCart key={product.id} product={product} />
-            ))}
+            products.map((product) => <ProductCart key={product.id} product={product} />)}
         </CategoryContainer>
       )}
     </>
-  );
+  )
 }
 
-export default Category;
+export default Category

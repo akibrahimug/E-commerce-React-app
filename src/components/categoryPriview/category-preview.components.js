@@ -1,10 +1,7 @@
-import React from "react";
-import ProductCart from "../productCart/productCart.components.js";
-import {
-  CategoryPreviewContainer,
-  Title,
-  Preview,
-} from "./category-preview.styles";
+/* eslint-disable react/prop-types */
+import React from 'react'
+import ProductCart from '../productCart/productCart.components.js'
+import { CategoryPreviewContainer, Title, Preview } from './category-preview.styles'
 function CategoryPreview({ title, products }) {
   return (
     <CategoryPreviewContainer>
@@ -19,7 +16,7 @@ function CategoryPreview({ title, products }) {
           ))}
       </Preview>
     </CategoryPreviewContainer>
-  );
+  )
 }
 
-export default CategoryPreview;
+export default CategoryPreview

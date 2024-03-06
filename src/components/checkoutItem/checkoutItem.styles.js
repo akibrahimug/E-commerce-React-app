@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const CheckoutItemContainer = styled.div`
   width: 100%;
@@ -54,4 +54,4 @@ export const CheckoutItemContainer = styled.div`
     padding-left: 12px;
     cursor: pointer;
   }
-`;
+`

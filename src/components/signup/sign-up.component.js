@@ -1,51 +1,49 @@
-import React, { useState } from "react";
+/* eslint-disable no-alert */
+import React, { useState } from 'react'
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
-} from "../../utils/firebase/firebase.utils";
-import FormInput from "../formInput/formin.component";
-import { Heading, SignUpContainer } from "./sign-up.styles";
-import Button from "../button/button.component";
+} from '../../utils/firebase/firebase.utils'
+import FormInput from '../formInput/formin.component'
+import { Heading, SignUpContainer } from './sign-up.styles'
+import Button from '../button/button.component'
 const defaultFormFields = {
-  displayName: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-};
+  displayName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+}
 
 function Signup() {
   // add default values of the form fields in state
-  const [formFields, setFormFields] = useState(defaultFormFields);
-  const { displayName, email, password, confirmPassword } = formFields;
+  const [formFields, setFormFields] = useState(defaultFormFields)
+  const { displayName, email, password, confirmPassword } = formFields
 
   //   set the form fields change event handler
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormFields({ ...formFields, [name]: value });
-  };
+    const { name, value } = e.target
+    setFormFields({ ...formFields, [name]: value })
+  }
 
   const resetFormFields = () => {
-    setFormFields(defaultFormFields);
-  };
+    setFormFields(defaultFormFields)
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (password !== confirmPassword) {
-      alert("Please make sure your confirm password matches the password");
+      alert('Please make sure your confirm password matches the password')
     }
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-      await createUserDocumentFromAuth(user, { displayName });
-      resetFormFields();
+      const { user } = await createAuthUserWithEmailAndPassword(email, password)
+      await createUserDocumentFromAuth(user, { displayName })
+      resetFormFields()
     } catch (err) {
-      if (err.code === "auth/email-already-in-use") {
-        alert("This user already exists");
+      if (err.code === 'auth/email-already-in-use') {
+        alert('This user already exists')
       }
     }
-  };
+  }
 
   return (
     <SignUpContainer>
@@ -53,41 +51,41 @@ function Signup() {
       <h4>Sign up with your email and password</h4>
       <form onSubmit={handleSubmit}>
         <FormInput
-          label="Display Name"
+          label='Display Name'
           required
-          type="text"
+          type='text'
           onChange={handleChange}
-          name="displayName"
+          name='displayName'
           value={displayName}
         />
         <FormInput
-          label="Email"
+          label='Email'
           required
-          type="email"
+          type='email'
           onChange={handleChange}
-          name="email"
+          name='email'
           value={email}
         />
         <FormInput
-          label="Password"
+          label='Password'
           required
-          type="password"
+          type='password'
           onChange={handleChange}
-          name="password"
+          name='password'
           value={password}
         />
         <FormInput
-          label="Confirm Password"
+          label='Confirm Password'
           required
-          type="password"
+          type='password'
           onChange={handleChange}
-          name="confirmPassword"
+          name='confirmPassword'
           value={confirmPassword}
         />
-        <Button type="submit">Sign Up</Button>
+        <Button type='submit'>Sign Up</Button>
       </form>
     </SignUpContainer>
-  );
+  )
 }
 
-export default Signup;
+export default Signup
