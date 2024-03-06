@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const CartItemContainer = styled.div`
   width: 100%;
@@ -10,7 +10,7 @@ export const CartItemContainer = styled.div`
     width: 30%;
     border-radius: 5px;
   }
-`;
+`
 
 export const ItemDetails = styled.div`
   width: 70%;
@@ -23,4 +23,4 @@ export const ItemDetails = styled.div`
   .name {
     font-size: 16px;
   }
-`;
+`

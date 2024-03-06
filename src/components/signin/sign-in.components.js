@@ -1,67 +1,64 @@
-import React, { useState, useEffect } from "react";
-import FormInput from "../formInput/formin.component";
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
-import {
-  SignInContainer,
-  Option,
-  Heading,
-  ButtonConatainer,
-} from "./sign-in.styles";
-import { getRedirectResult } from "firebase/auth";
+/* eslint-disable no-alert */
+/* eslint-disable no-console */
+import React, { useState, useEffect } from 'react'
+import FormInput from '../formInput/formin.component'
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
+import { SignInContainer, Option, Heading, ButtonConatainer } from './sign-in.styles'
+import { getRedirectResult } from 'firebase/auth'
 import {
   auth,
   // signInWithGooglePopup,
   signInWithGoogleRedirect,
   signInUserWithEmailAndPasswords,
-} from "../../utils/firebase/firebase.utils";
+} from '../../utils/firebase/firebase.utils'
 const defaultFormFields = {
-  email: "",
-  password: "",
-};
+  email: '',
+  password: '',
+}
 
 function SignIn() {
-  const [formFields, setFormFields] = useState(defaultFormFields);
-  const { email, password } = formFields;
+  const [formFields, setFormFields] = useState(defaultFormFields)
+  const { email, password } = formFields
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormFields({ ...formFields, [name]: value });
-  };
+    const { name, value } = e.target
+    setFormFields({ ...formFields, [name]: value })
+  }
 
   const resetFormFields = () => {
-    setFormFields(defaultFormFields);
-  };
+    setFormFields(defaultFormFields)
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      await signInUserWithEmailAndPasswords(email, password);
-      resetFormFields();
+      await signInUserWithEmailAndPasswords(email, password)
+      resetFormFields()
     } catch (err) {
       switch (err.code) {
         // if err.code === "auth/user-not-found"
-        case "auth/user-not-found":
+        case 'auth/user-not-found':
           // run this
-          alert("User does not exist");
+          alert('User does not exist')
           // if the above is true then dont run the rest
-          break;
+          break
         // if the first id false but err.code === "auth/wrong-password"
-        case "auth/wrong-password":
+        case 'auth/wrong-password':
           // run hthis
-          alert("Invalid password");
-          break;
+          alert('Invalid password')
+          break
         default:
-          console.log(err);
+          console.log(err)
       }
     }
-  };
+  }
 
   useEffect(() => {
     async function getRedirect() {
-      await getRedirectResult(auth);
+      await getRedirectResult(auth)
     }
-    getRedirect();
-  }, []);
+    getRedirect()
+  }, [])
 
   // It creates a POPUP window
   // const logGoogleUser = async () => {
@@ -75,37 +72,37 @@ function SignIn() {
       <h4>SignIn with your email and password</h4>
       <form onSubmit={handleSubmit}>
         <FormInput
-          label="Email"
+          label='Email'
           required
-          type="email"
+          type='email'
           onChange={handleChange}
-          name="email"
+          name='email'
           value={email}
         />
         <FormInput
-          label="Password"
+          label='Password'
           required
-          type="password"
+          type='password'
           onChange={handleChange}
-          name="password"
+          name='password'
           value={password}
         />
         <ButtonConatainer>
-          <Button type="submit">Sign In</Button>
+          <Button type='submit'>Sign In</Button>
           <Option>OR</Option>
           {/* <button onClick={logGoogleUser}> Sign In with Google</button> */}
           <Button
             buttonType={BUTTON_TYPE_CLASSES.google}
-            type="button"
+            type='button'
             onClick={signInWithGoogleRedirect}
           >
-            {" "}
+            {' '}
             SignIn with Google
           </Button>
         </ButtonConatainer>
       </form>
     </SignInContainer>
-  );
+  )
 }
 
-export default SignIn;
+export default SignIn

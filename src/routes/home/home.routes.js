@@ -1,6 +1,6 @@
-import React from "react";
-import Directory from "../../components/directory/directory.component.js";
-import { Outlet } from "react-router-dom";
+import React from 'react'
+import Directory from '../../components/directory/directory.component.js'
+import { Outlet } from 'react-router-dom'
 
 function Home() {
   return (
@@ -8,7 +8,7 @@ function Home() {
       <Outlet />
       <Directory />
     </>
-  );
+  )
 }
 
-export default Home;
+export default Home

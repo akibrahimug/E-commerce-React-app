@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const DirectoryItemContainer = styled.div`
   min-width: 30%;
@@ -42,7 +42,7 @@ export const DirectoryItemContainer = styled.div`
     background-size: cover;
     background-position: center;
   }
-`;
+`
 
 export const DirectoryItemBody = styled.div`
   height: 90px;
@@ -68,4 +68,4 @@ export const DirectoryItemBody = styled.div`
     font-weight: lighter;
     font-size: 16px;
   }
-`;
+`
