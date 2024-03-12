@@ -5,7 +5,7 @@ import {
   getAuth,
   signInWithRedirect,
   GoogleAuthProvider,
-  //   signInWithPopup,
+  signInWithPopup,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -45,7 +45,7 @@ export const auth = getAuth()
 
 // All providers
 // POPUP
-// export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+export const signInWithGooglePopup = () => signInWithPopup(auth, provider)
 // Redirects you to google page
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider)
 
@@ -98,8 +98,9 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) 
       console.log('error creating the user', e.message)
     }
     // if user data dose exists
-    return userDocRef
+    // return userDocRef
   }
+  return userSnapshot
 }
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -119,3 +120,16 @@ export const onAuthStateChangedListener = (callback) =>
   // this is an open listener waiting for any changes
   // we need to find a way to stop it
   onAuthStateChanged(auth, callback)
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe()
+        resolve(userAuth)
+      },
+      reject,
+    )
+  })
+}

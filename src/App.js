@@ -6,31 +6,34 @@ import Authentication from './routes/authenticate/auth.routes'
 import Shop from './routes/shop/shop.routes'
 import Checkout from './routes/checkout/checkout.routes'
 import { useEffect } from 'react'
-import {
-  createUserDocumentFromAuth,
-  onAuthStateChangedListener,
-} from './utils/firebase/firebase.utils'
-import { setCurrentUser } from './store/user/user.action'
+// import {
+//   createUserDocumentFromAuth,
+//   getCurrentUser,
+//   onAuthStateChangedListener,
+// } from './utils/firebase/firebase.utils'
+import { checkUserSession } from './store/user/user.action'
 
 const App = () => {
   const dispatch = useDispatch()
 
   // the onAuthStateChanged from firebase handles all the authentication
   // and listens to any changes from the components and changes accordingly
-  useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user)
-      }
-      dispatch(setCurrentUser(user))
-    })
-    // to prevent memory leak, we close the listener when nothing is changing
-    // clean up phase
-    return unsubscribe
-    // this dispatch never reruns but useEffect complians
-  }, [dispatch])
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChangedListener((user) => {
+  //     if (user) {
+  //       createUserDocumentFromAuth(user)
+  //     }
+  //     dispatch(setCurrentUser(user))
+  //   })
+  //   // to prevent memory leak, we close the listener when nothing is changing
+  //   // clean up phase
+  //   return unsubscribe
+  //   // this dispatch never reruns but useEffect complians
+  // }, [dispatch])
 
-  // Cart
+  useEffect(() => {
+    dispatch(checkUserSession())
+  }, [])
 
   return (
     <Routes>
