@@ -1,12 +1,13 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react'
-import {
-  createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
-} from '../../utils/firebase/firebase.utils'
+import // createAuthUserWithEmailAndPassword,
+// createUserDocumentFromAuth,
+'../../utils/firebase/firebase.utils'
 import FormInput from '../formInput/formin.component'
 import { Heading, SignUpContainer } from './sign-up.styles'
 import Button from '../button/button.component'
+import { signUpStart } from '../../store/user/user.action'
+import { useDispatch } from 'react-redux'
 const defaultFormFields = {
   displayName: '',
   email: '',
@@ -15,6 +16,7 @@ const defaultFormFields = {
 }
 
 function Signup() {
+  const dispatch = useDispatch()
   // add default values of the form fields in state
   const [formFields, setFormFields] = useState(defaultFormFields)
   const { displayName, email, password, confirmPassword } = formFields
@@ -35,8 +37,9 @@ function Signup() {
       alert('Please make sure your confirm password matches the password')
     }
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(email, password)
-      await createUserDocumentFromAuth(user, { displayName })
+      // const { user } = await createAuthUserWithEmailAndPassword(email, password)
+      // await createUserDocumentFromAuth(user, { displayName })
+      dispatch(signUpStart(email, password, displayName))
       resetFormFields()
     } catch (err) {
       if (err.code === 'auth/email-already-in-use') {

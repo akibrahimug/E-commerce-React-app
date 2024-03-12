@@ -10,7 +10,7 @@ export const Heading = styled.h2`
   margin: 8px 0;
 `
 
-export const ButtonConatainer = styled.div`
+export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
 `

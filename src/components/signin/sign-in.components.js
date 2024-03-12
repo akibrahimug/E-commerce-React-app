@@ -1,22 +1,18 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-console */
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import FormInput from '../formInput/formin.component'
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
-import { SignInContainer, Option, Heading, ButtonConatainer } from './sign-in.styles'
-import { getRedirectResult } from 'firebase/auth'
-import {
-  auth,
-  // signInWithGooglePopup,
-  signInWithGoogleRedirect,
-  signInUserWithEmailAndPasswords,
-} from '../../utils/firebase/firebase.utils'
+import { SignInContainer, Option, Heading, ButtonContainer } from './sign-in.styles'
+import { useDispatch } from 'react-redux'
+import { googleSigninStart, emailSigninStart } from '../../store/user/user.action'
 const defaultFormFields = {
   email: '',
   password: '',
 }
 
 function SignIn() {
+  const dispatch = useDispatch()
   const [formFields, setFormFields] = useState(defaultFormFields)
   const { email, password } = formFields
 
@@ -32,7 +28,7 @@ function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await signInUserWithEmailAndPasswords(email, password)
+      dispatch(emailSigninStart(email, password))
       resetFormFields()
     } catch (err) {
       switch (err.code) {
@@ -53,12 +49,16 @@ function SignIn() {
     }
   }
 
-  useEffect(() => {
-    async function getRedirect() {
-      await getRedirectResult(auth)
-    }
-    getRedirect()
-  }, [])
+  const signinWithGoogle = async () => {
+    dispatch(googleSigninStart())
+  }
+
+  // useEffect(() => {
+  //   async function getRedirect() {
+  //     await getRedirectResult(auth)
+  //   }
+  //   getRedirect()
+  // }, [])
 
   // It creates a POPUP window
   // const logGoogleUser = async () => {
@@ -87,19 +87,15 @@ function SignIn() {
           name='password'
           value={password}
         />
-        <ButtonConatainer>
+        <ButtonContainer>
           <Button type='submit'>Sign In</Button>
           <Option>OR</Option>
           {/* <button onClick={logGoogleUser}> Sign In with Google</button> */}
-          <Button
-            buttonType={BUTTON_TYPE_CLASSES.google}
-            type='button'
-            onClick={signInWithGoogleRedirect}
-          >
+          <Button buttonType={BUTTON_TYPE_CLASSES.google} type='button' onClick={signinWithGoogle}>
             {' '}
             SignIn with Google
           </Button>
-        </ButtonConatainer>
+        </ButtonContainer>
       </form>
     </SignInContainer>
   )

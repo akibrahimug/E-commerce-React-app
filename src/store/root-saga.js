@@ -1,5 +1,6 @@
 import { all, call } from 'redux-saga/effects'
 import { categoriesSaga } from './categories/categories.saga'
+import { userSaga } from './user/user.saga'
 // this is an es6 generator function
 // generator funtions allow us to pause executions within a function
 /*
@@ -18,5 +19,5 @@ NB: if there is no return after all the yields
 
  */
 export function* rootSaga() {
-  yield all([call(categoriesSaga)])
+  yield all([call(categoriesSaga), call(userSaga)])
 }
