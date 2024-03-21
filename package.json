@@ -5,10 +5,28 @@
   "main": "index.js",
   "author": "KASOMA IBRAHIM",
   "dependencies": {
+    "@commitlint/cli": "^16.2.4",
+    "@commitlint/config-conventional": "^16.2.4",
+    "@stripe/react-stripe-js": "^2.6.2",
+    "@stripe/stripe-js": "^3.0.10",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "dotenv": "^16.4.5",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-storybook": "^0.6.13",
     "firebase": "^9.15.0",
+    "husky": "^7.0.0",
+    "postinstall-postinstall": "^2.1.0",
+    "prettier": "^2.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.0",
@@ -21,27 +39,13 @@
     "redux-thunk": "^3.1.0",
     "reselect": "^5.1.0",
     "sass": "^1.57.1",
+    "stripe": "^14.21.0",
     "styled-components": "^5.3.6",
-    "web-vitals": "^2.1.4",
-    "commitizen": "^4.2.4",
-    "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.14.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-config-react-app": "^7.0.1",
-    "eslint-import-resolver-typescript": "^2.7.1",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-storybook": "^0.6.13",
-    "husky": "^7.0.0",
-    "postinstall-postinstall": "^2.1.0",
-    "prettier": "^2.6.2",
-    "yarn": "^1.22.18",
     "typescript": "4.6.4",
-    "@commitlint/cli": "^16.2.4",
-    "@commitlint/config-conventional": "^16.2.4"
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.18"
   },
-    "license": "MIT",
+  "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -72,7 +76,7 @@
       "last 1 safari version"
     ]
   },
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/akibrahimug/E-commerce-React-app"
   },
@@ -85,7 +89,8 @@
     }
   },
   "commitlint": {
-  "extends": ["@commitlint/config-conventional"]
-}
-
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
 }
