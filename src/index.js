@@ -5,26 +5,20 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
-// import { UserProvider } from "./components/context/user.context";
-// import { CategoriesProvider } from "./components/context/categories.context";
-// import { CartDropdownProvider } from "./components/context/cart-dropdown.context";
 import { Provider } from 'react-redux'
 import { store, persistor } from './store/store'
+import { Elements } from '@stripe/react-stripe-js'
+import { stripePromise } from './utils/stripe/strip.utils'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* we need to create a loading component */}
       <PersistGate loading={null} persistor={persistor}>
         <Router>
-          {/* <UserProvider> */}
-          {/* <CategoriesProvider> */}
-          {/* <CartDropdownProvider> */}
-          <App />
-          {/* </CartDropdownProvider> */}
-          {/* </CategoriesProvider> */}
-          {/* </UserProvider> */}
+          <Elements stripe={stripePromise}>
+            <App />
+          </Elements>
         </Router>
       </PersistGate>
     </Provider>
