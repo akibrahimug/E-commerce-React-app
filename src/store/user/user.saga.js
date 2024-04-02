@@ -15,12 +15,26 @@ import {
   signInWithGoogleRedirect,
   createAuthUserWithEmailAndPassword,
   signOutUser,
+  signInUserWithEmailAndPasswords,
 } from '../../utils/firebase/firebase.utils'
 
 export function* getSnapshotFromUserAuth(userAuth, additionalDetails) {
   try {
     const userSnapshot = yield call(createUserDocumentFromAuth, userAuth, additionalDetails)
     yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }))
+  } catch (error) {
+    yield put(signInFailed(error))
+  }
+}
+
+export function* signInWithEmail({ payload: { email, password } }) {
+  try {
+    const userCredential = yield call(signInUserWithEmailAndPasswords, email, password)
+
+    if (userCredential) {
+      const { user } = userCredential
+      yield call(getSnapshotFromUserAuth, user)
+    }
   } catch (error) {
     yield put(signInFailed(error))
   }
@@ -72,7 +86,7 @@ export function* onGoogleSigninStart() {
 }
 
 export function* onEmailSigninStart() {
-  yield takeLatest(USER_ACTION_TYPES.EMAIL_SIGN_IN_START)
+  yield takeLatest(USER_ACTION_TYPES.EMAIL_SIGN_IN_START, signInWithEmail)
 }
 
 export function* onCheckUserSession() {
@@ -98,5 +112,6 @@ export function* userSaga() {
     call(onSignUpStart),
     call(onSignUpSuccess),
     call(onSignOutStart),
+    call(onEmailSigninStart),
   ])
 }

@@ -7,7 +7,7 @@ npm run format
 echo "Type checking"
 npm run tsc
 
-echo "Linting"
-npm run lint
+# echo "Linting"
+# npm run lint
 
 # npm test

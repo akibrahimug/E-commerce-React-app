@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   error: null,
 }
 
-export const userReducer = (state = INITIAL_STATE, action) => {
+export const userReducer = (state = INITIAL_STATE, action: { type: string; payload: unknown }) => {
   const { type, payload } = action
 
   switch (type) {
